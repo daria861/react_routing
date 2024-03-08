@@ -7,10 +7,13 @@ import StateHook from './Pages/StateHookPage/StateHook'
 import Community from './Pages/Community/Community'
 import Resources from './Pages/Resources/Resources'
 import About from './Pages/About/About'
-import Users from './Pages/Users/Users'
 import Error from './Pages/Error/Error';
-import UserPage from "./Pages/Users/UserPage";
-import usersData from './data/users.json'
+import {Users} from './Pages/Users/Users'
+import {UserPage} from "./Pages/Users/UserPage";
+import loader from './Pages/Users/Users';
+import userLoader from './Pages/Users/UserPage';
+// import usersData from './data/users.json'
+import NewPage from './Pages/NewPage/New';
 import './global.css';
 
 import {
@@ -45,9 +48,10 @@ const router = createBrowserRouter(
             <Route path='/community' element={<Community />} />
             <Route path='/resources' element={<Resources />} />
             <Route path='/about' element={<About />} />
-            <Route path='/users' element={<Users />} />
-            <Route path='/users/:userId' loader={loader} element={<UserPage />} errorElement={<Error />} />
+            <Route path='/users' loader={loader} element={<Users />} />
+            <Route path='/users/:id' loader={userLoader} element={<UserPage />} errorElement={<Error />} />
             <Route path='*' element={<Error />} />
+            <Route path='/new-page' element={<NewPage />} />
 
         </Route>
     )
@@ -55,19 +59,3 @@ const router = createBrowserRouter(
 root.render(
     <RouterProvider router={router} />
 );
-
-
-function loader({params}){
-
-    // fetch('https://jsonplaceholder.typicode.com/users')
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         const user = data.filter(obj => obj.id === params.userId)
-    //     })
-
-
-
-    const user = usersData.filter(e => e.id === params.userId);
- 
-    return user[0];
-}

@@ -22,6 +22,9 @@ function Sidebar() {
                     <li>
                         <NavLink to="/users">Users</NavLink>
                     </li>
+                    <li>
+                    <NavLink to="/new-page">New page</NavLink>
+                    </li>
                 </ul>
             </nav>
         </div>

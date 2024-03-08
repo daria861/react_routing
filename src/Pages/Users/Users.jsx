@@ -1,21 +1,29 @@
-import { Link } from 'react-router-dom';
-// import usersData from '../../data/users.json'
+import { Link, useLoaderData} from 'react-router-dom';
 
 
-export default function Users() {
 
-    // const usersData = useLoaderData();
+export function Users() {
+
+    const users = useLoaderData();
+
 
 
     return (
         <div className="Main">
             <h1>Users</h1>
             <ul>
-                <li><Link to='/users/doe'>John Doe</Link></li>
-                <li><Link to='/users/beanit'>Jim Beanit</Link></li>
-                {/* {usersData.map(obj => <li><Link key={obj.id} to={`/users/${obj.id}`}>{obj.name}</Link></li>)} */}
+                {users?.map(obj => <li key={obj.id}><Link to={`/users/${obj.id}`}>{obj.name}</Link></li>)}
             </ul>
         </div>
     )
 }
 
+
+async function loader(){
+    const res = await fetch('https://jsonplaceholder.typicode.com/users')
+    return res.json();
+    
+}
+
+
+export default loader;
