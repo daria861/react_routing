@@ -20,9 +20,9 @@ export function Users() {
 
 
 async function loader(){
-    const res = await fetch('https://jsonplaceholder.typicode.com/users')
-    return res.json();
-    
+    const res = await fetch('https://jsonplaceholder.typicode.com/users');
+    const users = await res.json();   
+    return users;
 }
 
 
