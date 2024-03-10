@@ -4,7 +4,7 @@ import { Link, useLoaderData} from 'react-router-dom';
 
 export function Users() {
 
-    const users = useLoaderData();
+    const {users} = useLoaderData();
 
 
 
@@ -22,7 +22,7 @@ export function Users() {
 async function loader(){
     const res = await fetch('https://jsonplaceholder.typicode.com/users');
     const users = await res.json();   
-    return users;
+    return {users};
 }
 
 
